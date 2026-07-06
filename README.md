@@ -3,11 +3,17 @@
 
 
 This repository contains the declarative Infrastructure as Code (IaC) and GitOps manifests used to provision and manage a secure, production-grade cloud environment on Amazon Web Services (AWS). 
-
+This repo serves as the **Foundation Layer** of a decoupled, 3-tier GitOps ecosystem.
 
 The infrastructure is provisioned using \*\*Terraform\*\* and continuously reconciled using a pull-based \*\*GitOps architecture via ArgoCD\*\* inside an Amazon EKS cluster.
 
+\## Ecosystem Architecture
 
+To mirror enterprise-grade security and operational boundaries, the entire application lifecyle is split across three independent repositories:
+
+1.  **Core Infrastructure (This Repo):** Provisions the network fabric, container registries, and compute clusters via Terraform.
+2.  **Application Workload:** Contains the Python Flask microservices source code and containerization configs (`Dockerfile`).
+3.  **GitOps Orchestration:** Holds the Kubernetes `Deployment`, `Service`, and `Ingress` manifests continually reconciled by ArgoCD.
 
 \---
 
@@ -15,11 +21,7 @@ The infrastructure is provisioned using \*\*Terraform\*\* and continuously recon
 
 \## Architecture Overview
 
-
-
 The system isolates application source code from deployment configurations to enforce a zero-trust security boundary. 
-
-
 
 \*   \*\*VPC \& Networking:\*\* Custom AWS VPC spanning multiple Availability Zones with public and private subnets, managed NAT Gateways, and isolated routing tables.
 
