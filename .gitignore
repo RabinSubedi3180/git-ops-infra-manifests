@@ -1,0 +1,9 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tflog
+*.tfplan
+plan_out.json
+decoded.txt
+decoded1.txt
+encoded.txt
